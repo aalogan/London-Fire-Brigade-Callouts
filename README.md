@@ -1,6 +1,6 @@
 # How Many Fire Engines Next Week?:<br /> Using Weather Data to Predict London Fire Brigade Callouts
 
-Using data provided by the London Fire Brigade (LFB) and the Met Office, I analysed LFB callouts in relation to the weather to predict and classify callouts.
+Using data provided by the London Fire Brigade (LFB) and the Met Office, I analysed LFB callouts in relation to the weather to predict and classify callouts. :firefighter: 
 
 ## Table of Contents
 * [Project Goals](#project-goals)
@@ -14,4 +14,11 @@ Using data provided by the London Fire Brigade (LFB) and the Met Office, I analy
 
 
 ## Project Goals
-The London Fire Brigade is the largest in the world and has 100,000 callouts per year. Weather has a significant effect on ambulance and police callouts (people don’t riot when it’s raining and respiratory emergencies increase with temperature). I wanted to predict callout numbers for the next week based on the current weather forecast. In addition, a first look at the data showed that over half the callouts are false alarms so I wanted to see if a classification approach could be useful to predict a false alarm.
+The London Fire Brigade is the largest in the world and has 100,000 callouts per year. Weather has a significant effect on ambulance and police callouts (people don’t riot when it’s raining and respiratory emergencies increase with temperature). I wanted to predict callout numbers for the next week based on the current weather forecast. In addition, a first look at the data showed that over half the callouts are false alarms so I wanted to see if a classification approach could be useful to predict a false alarm. The map below gives an idea of the scope of the project.<br />
+<img src = "Assets/images/calloutsmap1.png">
+
+**Predictions:** Predicting number LFB callouts in the short term and likely classification of callout.
+**Goals:** Reveal which features have the most influence on callout numbers and callout classification.
+
+## Data Sources
+* [
