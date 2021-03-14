@@ -5,7 +5,7 @@ Using data provided by the London Fire Brigade (LFB) and the Met Office, I analy
 ## Table of Contents
 * [Project Goals](#project-goals)
 * [Data Sources](#data-sources)
-* [Data Preparation](#data-preparation)
+* [Data Preparation and EDA](#data-preparation-and-eda)
 * [Time Series Analysis](#time-series-analysis)
 * [Regression Modelling](#regression-modelling)
 * [Callout Prediction](#callout-prediction)
@@ -14,7 +14,7 @@ Using data provided by the London Fire Brigade (LFB) and the Met Office, I analy
 
 
 ## Project Goals
-The London Fire Brigade is the largest in the world and has 100,000 callouts per year. Weather has a significant effect on ambulance and police callouts (people don’t riot when it’s raining and respiratory emergencies increase with temperature). I wanted to predict callout numbers for the next week based on the current weather forecast. In addition, a first look at the data showed that over half the callouts are false alarms so I wanted to see if a classification approach could be useful to predict a false alarm. The map below gives an idea of the scope of the project. <br />
+The London Fire Brigade is the largest in the world and has 100,000 callouts per year. Weather has a significant effect on ambulance and police callouts (people don’t riot when it’s raining and respiratory emergencies increase with temperature). I wanted to predict callout numbers for the next week based on the current weather forecast. In addition, a first look at the data showed that over half the callouts are false alarms so I wanted to see if a classification approach could be useful to predict a false alarm. Successful prediction results will be useful for resource planning and successful classification results may be useful for helping to reduce false alarms (over half the callouts are false alarms). The map below gives an idea of the scope of the project. <br />
 <img src = "Assets/images/calloutsmap1.png">
 
 **Predictions:** Predicting number LFB callouts in the short term and likely classification of callout. <br />
@@ -39,7 +39,7 @@ The London Fire Brigade is the largest in the world and has 100,000 callouts per
 ---
 
 #### Hourly Weather to 2019 <br />
-[Met Office Archives](https://catalogue.ceda.ac.uk/uuid/dbd451271eb04662beade68da43546e1). CEDA MIDAS open datasets of hourly records fro met office weather stations across the UK (including Heathrow). Twelve csv files from here (three per year for different readings). <br />
+[Met Office Archives](https://catalogue.ceda.ac.uk/uuid/dbd451271eb04662beade68da43546e1). CEDA MIDAS open datasets of hourly records from Met Office weather stations across the UK (including Heathrow). Twelve csv files from here (three per year for different readings). <br />
 
 ---
 
@@ -59,4 +59,14 @@ The London Fire Brigade is the largest in the world and has 100,000 callouts per
 
 ---
 
-## Data Preparation
+## Data Preparation and EDA 
+* [Preparation](#preparation-)
+* [Regression EDA](#regression-eda-)
+* [Classification EDA](#classification-eda-)
+
+#### Preparation <br />
+
+The two LFB files have slightly different columns and format.They were joined, reformatted (inc datetime index) for all incidents 2016-2019 inclusive with non-relevant columns dropped. Weekend, holiday and lockdown columns added.
+The twelve Met Office csv files (hourly weather 2016-2019) were joined and reformatted (inc datetime index) with non-relevant columns dropped. The one Meteostat file (2020) with features engineered to match Met Office features) joined. Weather data in GMT, LFB data in GMT/BST so weather data adjusted to suit. ‘Islight’ column added from calculated sunrise/sunset times.
+LFB and weather data joined and weather data padded/backfilled appropriately.
+
