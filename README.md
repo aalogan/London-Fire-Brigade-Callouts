@@ -29,7 +29,7 @@ The London Fire Brigade is the largest in the world and has 100,000 callouts per
 * [Actual and Forecast Weather](#Actual-and-Forecast-Weather-) 
 
 #### LFB Incidents <br />
-[London Datastore LFB Incidents](https://data.london.gov.uk/dataset/london-fire-brigade-incident-records). The London Datastore is an open portal with a lot of information about London (well worth a look). Two csv files from here listing all LFB callouts from 2013-2016 and 2017-2020. <br />
+[London Datastore LFB Incidents](https://data.london.gov.uk/dataset/london-fire-brigade-incident-records). The London Datastore is an open portal with a lot of information about London (well worth a look). 2 csv files from here listing all LFB callouts from 2013-2016 and 2017-2020. <br />
 
 ---
 
@@ -39,7 +39,7 @@ The London Fire Brigade is the largest in the world and has 100,000 callouts per
 ---
 
 #### Hourly Weather to 2019 <br />
-[Met Office Archives](https://catalogue.ceda.ac.uk/uuid/dbd451271eb04662beade68da43546e1). CEDA MIDAS open datasets of hourly records from Met Office weather stations across the UK (including Heathrow). Twelve csv files from here (three per year for different readings). <br />
+[Met Office Archives](https://catalogue.ceda.ac.uk/uuid/dbd451271eb04662beade68da43546e1). CEDA MIDAS open datasets of hourly records from Met Office weather stations across the UK (including Heathrow). 12 csv files from here (3 per year for different readings). <br />
 
 ---
 
@@ -49,7 +49,7 @@ The London Fire Brigade is the largest in the world and has 100,000 callouts per
 ---
 
 #### Sunrise and Sunset Times <br />
-[Earth System Research Laboratories](https://www.esrl.noaa.gov/gmd/grad/solcalc/calcdetails.html) A spreadsheet to download to calculate the official sunrise and sunset times anywhere on earth. <br />
+[Earth System Research Laboratories](https://www.esrl.noaa.gov/gmd/grad/solcalc/calcdetails.html) A spreadsheet to download to calculate the official sunrise and sunset times anywhere on earth over a calendar year. <br />
 
 ---
 
@@ -65,15 +65,20 @@ The London Fire Brigade is the largest in the world and has 100,000 callouts per
 * [Classification EDA](#classification-eda-)
 
 #### Preparation <br />
-The two LFB files have slightly different columns and format.They were joined, reformatted (inc datetime index) for all incidents 2016-2019 inclusive with non-relevant columns dropped. Weekend, holiday and lockdown columns added.
-The twelve Met Office csv files (hourly weather 2016-2019) were joined and reformatted (inc datetime index) with non-relevant columns dropped. The one Meteostat file (2020 with features engineered to match Met Office features) joined. Weather data in GMT, LFB data in GMT/BST so weather data adjusted to suit. ‘Islight’ column added from calculated sunrise/sunset times.
+The 2 LFB files have slightly different columns and format.They were joined, reformatted (inc datetime index) for all incidents 2016-2019 inclusive with non-relevant columns dropped. Weekend, holiday and lockdown columns added.
+The 12 Met Office csv files (hourly weather 2016-2019) were joined and reformatted (inc datetime index) with non-relevant columns dropped. The 1 Meteostat file (2020 with features engineered to match Met Office features) joined. Weather data in GMT, LFB data in GMT/BST so weather data adjusted to suit. ‘Islight’ column added from calculated sunrise/sunset times.
 LFB and weather data joined and weather data padded/backfilled appropriately. The final step at this stage was to feature engineer a column to take account of low temperatures on the assumption that a cold spell is likely to cause more callouts. This was done by creating a coumn of (air temperature-13 )**2, so that low temperatures could be positively correlated with callout numbers. <br />
 
 ---
 
 #### Time Series and Regression EDA <br />
 
-I wanted to predict on callout numbers per hour so I needed to aggregate the data by hour to create callout counts per hour. The next step was to lookc at the data in more detail. Firstly looking at the counts over time. <br />
-<img src = "Assets/images/allcallouts.png">
+I wanted to predict on callout numbers per hour so I needed to aggregate the data by hour to create callout counts per hour. The next step was to lookc at the data in more detail. Firstly looking at the counts over time. This chart clearly shows the annual seasonality (along with interesting spikes in Feb/Mar 2018 during a cold spell and June 2018 during a heatwave). <br />
+<img src = "Assets/images/allcallouts.png"> <br />
 
+Next looking at the mean callouts per hour over the whole period, we clearly see a daily seasonality (not many calls at 4 in the morning, with a peak in the early evening). <br />
+<img src = "Assets/images/dailycallouts.png"> <br />
+
+Looking at the heatmap of correlations between the continuous variables, we can see that there are some variables correlated with the target variable (callouts) and no significant multicollinearity between the predictor variables. <br />
+<img src = "Assets/images/heatmap.png"> <br />
 
