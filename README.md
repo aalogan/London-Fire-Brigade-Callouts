@@ -158,15 +158,14 @@ I tried a number of other regression modelling approaches, with the cross-valida
 
 ## Callout Prediction <br />
 Below is a sample callout prediction for the following 6 full days, produced by running the code in the prediction script (predictionscript.py in the repo). This code scrapes the 2 Met Office webpages, extracts the data and feature engineers weather columns to match the linear regression model above, adds other feature engineered columns, imports the model and creates  prediction. Note the daily seasonality combined with weather variation overlaid. <br />
-
 <img src = "Assets/images/prediction.png"> <br />
 
 ## Classification Modelling
-For all of the modelling, the baseline from the data was:
-* Baseline Values <br />
--False Alarm: 0.5022 <br />
+For all of the modelling, the baseline from the data was: <br />
+Baseline Values <br />
+-False Alarm: 	  0.5022 <br />
 -Special Service: 0.3138 <br />
--Fire: 0.1840 <br />
+-Fire: 		  0.1840 <br />
 
 * [Logistic Regression](#logistic-regression-)
 * [Other Models](other-models-)
@@ -174,9 +173,30 @@ For all of the modelling, the baseline from the data was:
 #### Logistic Regression <br />
 Gridsearching a multinomial regularised (l2 penalty) logistic regression model gave the best and most interpretable results: <br />
 * Logistic Regression (C = 0.01) <br />
--Training Score: 0.5202 <br />
--Test Score: 0.5199 <br />
--CV Score: 0.5186 <br />
+-CV Score: 0.6584 <br />
+
+This is significantly better than baseline. Further metrics for the results are shown below (all looking at the test data): <br />
+
+* Confusion Matrix <br />
+<img src = "Assets/images/confmat.png"> <br />
+
+* Precision-Recall Curves <br />
+<img src = "Assets/images/prcurve.png"> <br />
+
+* Receiver Operating Characteristic Curves <br />
+<img src = "Assets/images/roccurve.png"> <br />
+
+---
+In addition, we insight into what factors are associated with False Alarms, Special Service Calls and Fire Calls are given by the coefficients of the models for each of the classes, the most important of which are shown below (the most imposrtant coefficients in the centre of each chart): <br />
+
+* False Alarm Coefficients <br />
+<img src = "Assets/images/facoeff.png"> <br />
+
+* Special Service Coefficients <br />
+<img src = "Assets/images/specsercoeff.png"> <br />
+
+* Fire Coefficients <br />
+<img src = "Assets/images/firecoeff.png"> <br />
 
 ---
 
