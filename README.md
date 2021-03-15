@@ -77,8 +77,14 @@ I wanted to predict on callout numbers per hour so I needed to aggregate the dat
 <img src = "Assets/images/allcallouts.png"> <br />
 
 Next looking at the mean callouts per hour over the whole period, we clearly see a daily seasonality (not many calls at 4 in the morning, with a peak in the early evening). <br />
-<img src = "Assets/images/dailycallouts.png"> <br />
+<img src = "Assets/images/dailycallouts.png" height = "300"> <br />
 
 Looking at the heatmap of correlations between the continuous variables, we can see that there are some variables correlated with the target variable (callouts) and no significant multicollinearity between the predictor variables. <br />
 <img src = "Assets/images/heatmap.png"> <br />
+
+Seeing the daily and annual seasonality, the first step was to explore the time series aspects of the data. initially looking at the autocorrelation and partial autocorrelation plots. <br />
+<img src = "Assets/images/autocorr.png"> <br />
+
+
+
 
