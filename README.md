@@ -115,13 +115,13 @@ GridSearching a regularised (ElasticNet) Linear Regression model gave the best a
 ---
 
 Looking at the predictions against actual: <br />
-<img src = "Assets/images/regpreds.png"> <br />
+<img src = "Assets/images/regpred.png"> <br />
 
 ---
-Looking at the distribution of the standardised residuals: <br />
+Looking at the distribution of the standardised residuals against a normal distribution: <br />
 <img src = "Assets/images/regresdis.png"> <br />
 
-We can see that there is useful predictive information form the model, although with a significant amount of unexplained variance (more investigation required!). <br />
+We can see that there is useful predictive information from the model, although with a significant amount of unexplained variance (more investigation required!). <br />
 
 ---
 
@@ -129,5 +129,35 @@ I also divided the process into 2 steps (using the same model parameters) - firs
 * Time Feature Importances: <br />
 <img src = "Assets/images/timefi.png"> <br />
 <br />
+
 * Weather Feature Importances: <br />
-<img src = "Assets/images/weathfi.png"> <br /> 
+<img src = "Assets/images/weathfi.png"> <br />
+
+#### Other Models <br />
+
+I tried a number of other regression modelling approaches, with the cross-validated scores listed below: <br />
+* Linear Regression (Power Transformer rather than Standard Scaler) - CV Score 0.5159. <br />
+
+* Linear Regression (Polynomial Features degree 2) - CV Score 0.5151<br />
+
+* Decision Tree Regression (GridSearched) - CV Score 0.4183 <br />
+
+* Bagging Decision Tree Regressor - CV Score 0.5065 <br />
+
+* Random Forest Regressor - CV Score 0.5067 <br />
+
+* ADA Boost Regressor - CV Score 0.5103 <br />
+
+* SGD Regressor - CV Score 0.5184 <br />
+
+* SVM Regressor - CV Score 0.5085 <br />
+
+* NNet Regressor - CV Score 0.4639 <br />
+
+---
+
+## Callout Prediction <br />
+Below is a sample callout prediction for the following 6 full days, produced by running the code in the prediction script (predictionscript.py in the repo). This code scrapes the 2 Met Office webpages, extracts the data and feature engineers weather columns to match the linear regression model above, adds other feature engineered columns, imports the model and creates  prediction. Note the daily seasonality combined with weather variation overlaid. <br />
+
+<img src = "Assets/images/prediction.png"> <br />
+
