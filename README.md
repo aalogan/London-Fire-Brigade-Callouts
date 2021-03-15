@@ -61,12 +61,19 @@ The London Fire Brigade is the largest in the world and has 100,000 callouts per
 
 ## Data Preparation and EDA 
 * [Preparation](#preparation-)
-* [Regression EDA](#regression-eda-)
+* [Time Series and Regression EDA](#time-series-and-regression-eda-)
 * [Classification EDA](#classification-eda-)
 
 #### Preparation <br />
-
 The two LFB files have slightly different columns and format.They were joined, reformatted (inc datetime index) for all incidents 2016-2019 inclusive with non-relevant columns dropped. Weekend, holiday and lockdown columns added.
-The twelve Met Office csv files (hourly weather 2016-2019) were joined and reformatted (inc datetime index) with non-relevant columns dropped. The one Meteostat file (2020) with features engineered to match Met Office features) joined. Weather data in GMT, LFB data in GMT/BST so weather data adjusted to suit. ‘Islight’ column added from calculated sunrise/sunset times.
-LFB and weather data joined and weather data padded/backfilled appropriately.
+The twelve Met Office csv files (hourly weather 2016-2019) were joined and reformatted (inc datetime index) with non-relevant columns dropped. The one Meteostat file (2020 with features engineered to match Met Office features) joined. Weather data in GMT, LFB data in GMT/BST so weather data adjusted to suit. ‘Islight’ column added from calculated sunrise/sunset times.
+LFB and weather data joined and weather data padded/backfilled appropriately. The final step at this stage was to feature engineer a column to take account of low temperatures on the assumption that a cold spell is likely to cause more callouts. This was done by creating a coumn of (air temperature-13 )**2, so that low temperatures could be positively correlated with callout numbers. <br />
+
+---
+
+#### Time Series and Regression EDA <br />
+
+I wanted to predict on callout numbers per hour so I needed to aggregate the data by hour to create callout counts per hour. The next step was to lookc at the data in more detail. Firstly looking at the counts over time. <br />
+<img src = "Assets/images/allcallouts.png">
+
 
