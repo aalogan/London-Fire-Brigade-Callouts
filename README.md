@@ -6,8 +6,7 @@ Using data provided by the London Fire Brigade (LFB) and the Met Office, I analy
 * [Project Goals](#project-goals)
 * [Data Sources](#data-sources)
 * [Data Preparation and EDA](#data-preparation-and-eda)
-* [Time Series Analysis](#time-series-analysis)
-* [Regression Modelling](#regression-modelling)
+* [Time Series and Regression Modelling](#time-series-and-regression-modelling)
 * [Callout Prediction](#callout-prediction)
 * [Classification Modelling](#classification-modelling)
 * [Next Steps](#next-steps)
@@ -93,8 +92,42 @@ Switching to the classification task (where we are looking at 3 different classe
 <img src = "Assets/images/pairplot.png"> <br />
 
 However, there is an additional variable (PropertyType, 286 distinct types) which wasn't used for the callout predictions which is worth looking at. Here are the counts for the top  50 types of property. <br />
-<img src = "Assets/images/propcnts.png" height = "400"> <br />
+<img src = "Assets/images/propcnts.png" height = "600"> <br />
 
+## Time Series and Regression Modelling
+* [Time Series](#time-series-)
+* [Regression](#regression-)
 
+### Time Series <br />
+Seeing the annual seasonality, initially I tried a pure time series SARIMA model. However, trying with an annual seasonality and hourly time periods was too much of a stretch for my available processing and memory resources, so I tried a SARIMAX model including the prior year counts an an exogenous variable along with the weather variables. This resulted in an R2 score of 0.52213. This was a useful reference, but there were 2 issues meaning that I wouldn't go further with the SARIMAX modelling: 1) the lack of availability of callout data after the end of December 2020 meant I wouldn't be able to use the model for current predictions and 2) this wasn't a cross-validated score. <br />
 
+### Regression
+* [Linear Regression](#linear-regression-)
+* [Other Models](#other-models-)
 
+#### Linear Regression <br />
+GridSearching a regularised (ElasticNet) Linear Regression model gave the best and most interpretable results: <br />
+* Linear Regression (alpha = 0.0024, l1-ratio = 0.775) <br />
+-Training Score: 0.5202 <br />
+-Test Score: 0.5199 <br />
+-CV Score: 0.5186 <br />
+
+---
+
+Looking at the predictions against actual: <br />
+<img src = "Assets/images/regpreds.png"> <br />
+
+---
+Looking at the distribution of the standardised residuals: <br />
+<img src = "Assets/images/regresdis.png"> <br />
+
+We can see that there is useful predictive information form the model, although with a significant amount of unexplained variance (more investigation required!). <br />
+
+---
+
+I also divided the process into 2 steps (using the same model parameters) - firstly modelling using the time variables only (CV score 0.4997) and then using the residuals from this model as the target for the weather variables (CV Score 0.05667) in order to see the relative importance of the time against the weather and also to separate the various feature importances. We can see from the cross-validated scores that the time has much more significant predictive information than the weather, but the weather does have some predictive information. <br />
+* Time Feature Importances: <br />
+<img src = "Assets/images/timefi.png"> <br />
+<br />
+* Weather Feature Importances: <br />
+<img src = "Assets/images/weathfi.png"> <br /> 
