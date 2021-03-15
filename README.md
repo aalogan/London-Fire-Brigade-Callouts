@@ -13,7 +13,7 @@ Using data provided by the London Fire Brigade (LFB) and the Met Office, I analy
 
 
 ## Project Goals
-The London Fire Brigade is the largest in the world and has 100,000 callouts per year. Weather has a significant effect on ambulance and police callouts (people don’t riot when it’s raining and respiratory emergencies increase with temperature). I wanted to predict callout numbers for the next week based on the current weather forecast. In addition, a first look at the data showed that over half the callouts are false alarms so I wanted to see if a classification approach could be useful to predict a false alarm. Successful prediction results will be useful for resource planning and successful classification results may be useful for helping to reduce false alarms (over half the callouts are false alarms). The map below gives an idea of the scope of the project. <br />
+The London Fire Brigade is the largest in the world and has 100,000 callouts per year. Weather has a significant effect on ambulance and police callouts (people don’t riot when it’s raining and respiratory emergencies increase with temperature). I wanted to predict callout numbers for the next week based on the current weather forecast. In addition, a first look at the data showed that over half the callouts are false alarms so I wanted to see if a classification approach could be useful to predict a false alarm. Successful prediction results would be useful for resource planning and successful classification results may be useful for helping to reduce false alarms (over half the callouts are false alarms). The map below gives an idea of the scope of the project. <br />
 <img src = "Assets/images/calloutsmap1.png">
 
 **Predictions:** Predicting number LFB callouts in the short term and likely classification of callout. <br />
@@ -157,7 +157,7 @@ I tried a number of other regression modelling approaches, with the cross-valida
 ---
 
 ## Callout Prediction <br />
-Below is a sample callout prediction for the following 6 full days, produced by running the code in the prediction script (predictionscript.py in the repo). This code scrapes the 2 Met Office webpages, extracts the data and feature engineers weather columns to match the linear regression model above, adds other feature engineered columns, imports the model and creates  prediction. Note the daily seasonality combined with weather variation overlaid. <br />
+Below is a sample callout prediction for the following 6 full days, produced by running the code in the prediction script (predictionscript.py in the repo). This code scrapes the 2 Met Office webpages, extracts the data and feature engineers weather columns to match the linear regression model above, adds other feature engineered columns, imports the model and creates the prediction. Note the daily seasonality combined with weather variation overlaid. <br />
 <img src = "Assets/images/prediction.png"> <br />
 
 ## Classification Modelling
@@ -187,7 +187,7 @@ This is significantly better than baseline. Further metrics for the results are 
 <img src = "Assets/images/roccurve.png"> <br />
 
 ---
-In addition, insight into what factors are associated with False Alarms, Special Service Calls and Fire Calls are given by the coefficients of the models for each of the classes, the most important of which are shown below (the most important coefficients in the centre of each chart) The key point for the classification is that all of these coefficients are related to the property types (the weather and time of call do not appear to have a large effect on the classification of callouts). As a side note, I'm intrigued to know what causes the Special Service Calls to Fire Stations (see the fourth coefficient from the top in the Special Services chart): <br />
+In addition, insight into what factors are associated with False Alarms, Special Service Calls and Fire Calls are given by the coefficients of the models for each of the classes - the most important of which are shown below (the most important coefficients in the centre of each chart). The key point for the classification is that all of these coefficients are related to the property types (the weather and time of call do not appear to have a large effect on the classification of callouts). As a side note, I'm intrigued to know what causes the Special Service Calls to Fire Stations (see the fourth coefficient from the top in the Special Services chart): <br />
 
 * False Alarm Coefficients <br />
 <img src = "Assets/images/facoeff.png"> <br />
