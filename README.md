@@ -106,7 +106,7 @@ Seeing the annual seasonality, initially I tried a pure time series SARIMA model
 * [Other Models](#other-models-)
 
 #### Linear Regression <br />
-GridSearching a regularised (ElasticNet) Linear Regression model gave the best and most interpretable results: <br />
+GridSearching a regularised (ElasticNet penalty) Linear Regression model gave the best and most interpretable results: <br />
 * Linear Regression (alpha = 0.0024, l1-ratio = 0.775) <br />
 -Training Score: 0.5202 <br />
 -Test Score: 0.5199 <br />
@@ -160,4 +160,23 @@ I tried a number of other regression modelling approaches, with the cross-valida
 Below is a sample callout prediction for the following 6 full days, produced by running the code in the prediction script (predictionscript.py in the repo). This code scrapes the 2 Met Office webpages, extracts the data and feature engineers weather columns to match the linear regression model above, adds other feature engineered columns, imports the model and creates  prediction. Note the daily seasonality combined with weather variation overlaid. <br />
 
 <img src = "Assets/images/prediction.png"> <br />
+
+## Classification Modelling
+For all of the modelling, the baseline from the data was:
+* Baseline Values <br />
+-False Alarm: 0.5022 <br />
+-Special Service: 0.3138 <br />
+-Fire: 0.1840 <br />
+
+* [Logistic Regression](#logistic-regression-)
+* [Other Models](other-models-)
+
+#### Logistic Regression <br />
+Gridsearching a multinomial regularised (l2 penalty) logistic regression model gave the best and most interpretable results: <br />
+* Logistic Regression (C = 0.01) <br />
+-Training Score: 0.5202 <br />
+-Test Score: 0.5199 <br />
+-CV Score: 0.5186 <br />
+
+---
 
