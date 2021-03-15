@@ -9,7 +9,7 @@ Using data provided by the London Fire Brigade (LFB) and the Met Office, I analy
 * [Time Series and Regression Modelling](#time-series-and-regression-modelling)
 * [Callout Prediction](#callout-prediction)
 * [Classification Modelling](#classification-modelling)
-* [Next Steps](#next-steps)
+* [What Next](#what-next)
 
 
 ## Project Goals
@@ -107,7 +107,7 @@ Seeing the annual seasonality, initially I tried a pure time series SARIMA model
 
 #### Linear Regression <br />
 GridSearching a regularised (ElasticNet penalty) Linear Regression model gave the best and most interpretable results: <br />
-* Linear Regression (alpha = 0.0024, l1-ratio = 0.775) <br />
+* Linear Regressor (alpha = 0.0024, l1-ratio = 0.775) <br />
 -Training Score: 0.5202 <br />
 -Test Score: 0.5199 <br />
 -CV Score: 0.5186 <br />
@@ -135,12 +135,12 @@ I also divided the process into 2 steps (using the same model parameters) - firs
 
 #### Other Models <br />
 
-I tried a number of other regression modelling approaches, with the cross-validated scores listed below: <br />
-* Linear Regression (Power Transformer rather than Standard Scaler) - CV Score 0.5159. <br />
+I tried a number of other regression modelling approaches, with the cross-validated scores listed below (the linear regression above was most suitable): <br />
+* Linear Regressor (Power Transformer rather than Standard Scaler) - CV Score 0.5159 <br />
 
 * Linear Regression (Polynomial Features degree 2) - CV Score 0.5151<br />
 
-* Decision Tree Regression (GridSearched) - CV Score 0.4183 <br />
+* Decision Tree Regressor (GridSearched) - CV Score 0.4183 <br />
 
 * Bagging Decision Tree Regressor - CV Score 0.5065 <br />
 
@@ -187,7 +187,7 @@ This is significantly better than baseline. Further metrics for the results are 
 <img src = "Assets/images/roccurve.png"> <br />
 
 ---
-In addition, we insight into what factors are associated with False Alarms, Special Service Calls and Fire Calls are given by the coefficients of the models for each of the classes, the most important of which are shown below (the most imposrtant coefficients in the centre of each chart): <br />
+In addition, insight into what factors are associated with False Alarms, Special Service Calls and Fire Calls are given by the coefficients of the models for each of the classes, the most important of which are shown below (the most important coefficients in the centre of each chart) The key point for the classification is that all of these coefficients are related to the property types (the weather and time of call do not appear to have a large effect on the classification of callouts). As a side note, I'm intrigued to know what causes the Special Service Calls to Fire Stations (see the fourth coefficient from the top in the Special Services chart): <br />
 
 * False Alarm Coefficients <br />
 <img src = "Assets/images/facoeff.png"> <br />
@@ -200,3 +200,44 @@ In addition, we insight into what factors are associated with False Alarms, Spec
 
 ---
 
+#### Other Models <br />
+I tried a number of other regression modelling approaches, with the scores listed below (the logistic regression above was most suitable): <br />
+* Logistic Regressor (Power Transformer rather than Standard Scaler) - CV Score 0.6583 <br />
+
+* Decision Tree Classifier (GridSearched) - CV Score 0.6447 <br />
+
+* Bagging Decision Tree Classifier - CV Score 0.5450 <br />
+
+* Random Forest Classifier - CV Score 0.6338 <br />
+
+* KNN Classifier - CV Score 0.6227 <br />
+
+* SVM Classifier - 20% Train Size (due to speed), not Cross-Validated Score 0.6622 <br />
+
+* NNet Regressor - Non Cross-Validated Score 0.6564 <br />
+
+---
+
+## What Next
+[Conclusions](#conclusions-) 
+[Next Steps](#next-steps-)
+
+#### Conclusions <br />
+* This was a worthwhile exercise for the intended audience with some useful insight gained into the data, both for the regression and for the classification. <br />
+
+* This was a very worthwhile exercise for me in terms of working with real data from multiple sources with all its foibles. <br />
+
+* There are plenty of areas to follow up on and investigate in more detail. <br />
+
+---
+
+#### Next Steps <br />
+* Investigate possibilities for finding 2021 callout data for regression. <br />
+
+* Consider other regression predictor variables to add (eg large events, other?). <br />
+
+* Investigate further steps for classification (eg phone call transcripts for NLP to improve results). <br />
+
+* Investigate possibilities for using the same model (or process) with other cities or areas. <br />
+
+* From a personal point of view, improve my own planning, coding and documentation process to improve usability and communicatability of my work. <br />
