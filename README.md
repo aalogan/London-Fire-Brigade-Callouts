@@ -73,7 +73,7 @@ LFB and weather data joined and weather data padded/backfilled appropriately. Th
 
 #### Time Series and Regression EDA <br />
 
-I wanted to predict on callout numbers per hour so I needed to aggregate the data by hour to create callout counts per hour. The next step was to lookc at the data in more detail. Firstly looking at the counts over time. This chart clearly shows the annual seasonality (along with interesting spikes in Feb/Mar 2018 during a cold spell and June 2018 during a heatwave). <br />
+I wanted to predict on callout numbers per hour so I needed to aggregate the data by hour to create callout counts per hour, resulting in a dataframe with 43498 rows. In addition, a column was feature engineered showing the prior year callout counts at the same hour (also meaning that the 29th  Feb dates needed to be dropped). The next step was to look at the data in more detail. Firstly looking at the counts over time. This chart clearly shows the annual seasonality (along with interesting spikes in Feb/Mar 2018 during a cold spell and June 2018 during a heatwave). <br />
 <img src = "Assets/images/allcallouts.png"> <br />
 
 Next looking at the mean callouts per hour over the whole period, we clearly see a daily seasonality (not many calls at 4 in the morning, with a peak in the early evening). <br />
@@ -82,9 +82,14 @@ Next looking at the mean callouts per hour over the whole period, we clearly see
 Looking at the heatmap of correlations between the continuous variables, we can see that there are some variables correlated with the target variable (callouts) and no significant multicollinearity between the predictor variables. <br />
 <img src = "Assets/images/heatmap.png"> <br />
 
-Seeing the daily and annual seasonality, the first step was to explore the time series aspects of the data. initially looking at the autocorrelation and partial autocorrelation plots. <br />
+Seeing the daily and annual seasonality, the first step was to explore the time series aspects of the data. initially looking at the autocorrelation and partial autocorrelation plots, where we can see a strong autocorrelation with the hour of the day. <br />
 <img src = "Assets/images/autocorr.png"> <br />
 
+---
 
+#### Classification EDA <br />
+
+Switching to the classification task (where we are looking at 3 different classes: Fire, Special Services and False Alarm), I looked at pairplots of relevant variables, where we can see no obvious clusters. <br />
+<img src = "Assets/images/pairplot.png"> <br />
 
 
