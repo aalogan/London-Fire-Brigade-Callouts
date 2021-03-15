@@ -92,4 +92,9 @@ Seeing the daily and annual seasonality, the first step was to explore the time 
 Switching to the classification task (where we are looking at 3 different classes: Fire, Special Services and False Alarm), I looked at pairplots of relevant variables, where we can see no obvious clusters. <br />
 <img src = "Assets/images/pairplot.png"> <br />
 
+However, there is an additional variable (PropertyType, 286 distinct types) which wasn't used for the callout predictions which is worth looking at. Here are the counts for the top  50 types of property. <br />
+<img src = "Assets/images/propcnts.png" height = "400"> <br />
+
+
+
 
