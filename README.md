@@ -219,8 +219,8 @@ I tried a number of other regression modelling approaches, with the scores liste
 ---
 
 ## What Next
-[Conclusions](#conclusions-) 
-[Next Steps](#next-steps-)
+* [Conclusions](#conclusions-) 
+* [Next Steps](#next-steps-)
 
 #### Conclusions <br />
 * This was a worthwhile exercise for the intended audience with some useful insight gained into the data, both for the regression and for the classification. <br />
